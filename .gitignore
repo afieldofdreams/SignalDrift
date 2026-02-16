@@ -45,6 +45,9 @@ dist-ssr/
 *.log
 *.local
 
+# ===== Uploads =====
+backend/uploads/
+
 # ===== Test / Coverage =====
 .coverage
 htmlcov/

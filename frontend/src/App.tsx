@@ -1,4 +1,5 @@
 import HelloWorld from './components/HelloWorld';
+import DocumentUpload from './components/DocumentUpload';
 import './App.css';
 
 function App() {
@@ -8,6 +9,9 @@ function App() {
         <p className="app-title">SignalDrift</p>
         <HelloWorld />
       </header>
+      <main className="app-main">
+        <DocumentUpload />
+      </main>
     </div>
   );
 }

@@ -15,6 +15,7 @@ async def lifespan(app: FastAPI):
         level=getattr(logging, settings.log_level.upper(), logging.INFO),
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
+    settings.upload_path.mkdir(parents=True, exist_ok=True)
     logging.getLogger(__name__).info("SignalDrift backend starting up")
     yield
     logging.getLogger(__name__).info("SignalDrift backend shutting down")

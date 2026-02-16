@@ -5,6 +5,8 @@ services:
       - "${BACKEND_PORT:-8000}:8000"
     env_file:
       - .env
+    volumes:
+      - uploads:/app/uploads
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"]
       interval: 30s
@@ -21,3 +23,6 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  uploads:

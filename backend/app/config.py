@@ -6,12 +6,24 @@ from pydantic_settings import BaseSettings
 _ROOT_ENV = Path(__file__).resolve().parent.parent.parent / ".env"
 
 
+_BACKEND_DIR = Path(__file__).resolve().parent.parent
+
+ALLOWED_EXTENSIONS = {".pdf", ".docx", ".doc", ".txt", ".csv", ".xlsx", ".xls", ".md", ".rtf"}
+
+
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     backend_port: int = 8000
     cors_origins: str = "http://localhost:5173,http://localhost:3000"
     log_level: str = "info"
+    upload_dir: str = "uploads"
+
+    @property
+    def upload_path(self) -> Path:
+        """Resolve upload directory. Absolute paths used as-is, relative resolved from backend root."""
+        p = Path(self.upload_dir)
+        return p if p.is_absolute() else _BACKEND_DIR / p
 
     @property
     def cors_origin_list(self) -> list[str]:

@@ -19,13 +19,13 @@ describe('HelloWorld', () => {
   it('displays the hello message on success', async () => {
     vi.spyOn(global, 'fetch').mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ message: 'Hello, World!' }),
+      json: async () => ({ message: 'Mapping Business Resilience.' }),
     } as Response);
 
     render(<HelloWorld />);
 
     await waitFor(() => {
-      expect(screen.getByText('Hello, World!')).toBeInTheDocument();
+      expect(screen.getByText('Mapping Business Resilience.')).toBeInTheDocument();
     });
   });
 

@@ -25,3 +25,40 @@ export async function apiFetch<T>(path: string): Promise<ApiResult<T>> {
     return { ok: false, error: message };
   }
 }
+
+export async function apiDelete<T>(path: string): Promise<ApiResult<T>> {
+  try {
+    const response = await fetch(`${BASE_URL}${path}`, { method: 'DELETE' });
+    if (!response.ok) {
+      const body = await response.json().catch(() => null);
+      const detail = body?.detail ?? `HTTP ${response.status}: ${response.statusText}`;
+      return { ok: false, error: detail };
+    }
+    const data: T = await response.json();
+    return { ok: true, data };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return { ok: false, error: message };
+  }
+}
+
+export async function apiUpload<T>(path: string, file: File): Promise<ApiResult<T>> {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch(`${BASE_URL}${path}`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!response.ok) {
+      const body = await response.json().catch(() => null);
+      const detail = body?.detail ?? `HTTP ${response.status}: ${response.statusText}`;
+      return { ok: false, error: detail };
+    }
+    const data: T = await response.json();
+    return { ok: true, data };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return { ok: false, error: message };
+  }
+}

@@ -1,11 +1,14 @@
 .app {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
   background: #0a0a0a;
   color: #e0e0e0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 2rem;
 }
 
 .app-header {
@@ -35,4 +38,136 @@
 
 .status.error {
   color: #e74c3c;
+}
+
+/* Document upload */
+.app-main {
+  width: 100%;
+  max-width: 520px;
+}
+
+.doc-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.upload-btn:hover {
+  background: #222;
+  border-color: #555;
+}
+
+.upload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upload-error {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.upload-empty {
+  color: #555;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  background: #111;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.file-item:hover {
+  background: #181818;
+}
+
+.file-icon {
+  flex-shrink: 0;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.file-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.file-name {
+  color: #ddd;
+  font-size: 0.85rem;
+  font-weight: 450;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #555;
+  font-size: 0.75rem;
+}
+
+.file-ext {
+  font-weight: 500;
+  color: #666;
+}
+
+.file-sep {
+  color: #333;
+}
+
+.file-delete {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0.35rem;
+  background: none;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.file-delete:hover {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
 }
