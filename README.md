@@ -12,7 +12,8 @@ Full-stack application with a FastAPI backend and React (Vite + TypeScript) fron
 
 ```bash
 # 1. Clone and enter the repo
-cd Claude_demo
+git clone git@github.com:afieldofdreams/SignalDrift.git
+cd SignalDrift
 
 # 2. Copy the environment file
 cp .env.example .env
