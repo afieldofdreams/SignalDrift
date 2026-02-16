@@ -1,7 +1,12 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import DocumentUpload from './DocumentUpload';
+
+function renderWithRouter(ui: React.ReactElement) {
+  return render(<MemoryRouter>{ui}</MemoryRouter>);
+}
 
 describe('DocumentUpload', () => {
   beforeEach(() => {
@@ -14,7 +19,7 @@ describe('DocumentUpload', () => {
       json: async () => ({ files: [] }),
     } as Response);
 
-    render(<DocumentUpload />);
+    renderWithRouter(<DocumentUpload />);
 
     expect(screen.getByRole('button', { name: /upload/i })).toBeInTheDocument();
 
@@ -33,7 +38,7 @@ describe('DocumentUpload', () => {
       }),
     } as Response);
 
-    render(<DocumentUpload />);
+    renderWithRouter(<DocumentUpload />);
 
     await waitFor(() => {
       expect(screen.getByText('report.pdf')).toBeInTheDocument();
@@ -64,7 +69,7 @@ describe('DocumentUpload', () => {
         }),
       } as Response);
 
-    render(<DocumentUpload />);
+    renderWithRouter(<DocumentUpload />);
 
     await waitFor(() => {
       expect(screen.getByText('No documents yet')).toBeInTheDocument();
@@ -101,7 +106,7 @@ describe('DocumentUpload', () => {
         json: async () => ({ files: [] }),
       } as Response);
 
-    render(<DocumentUpload />);
+    renderWithRouter(<DocumentUpload />);
 
     await waitFor(() => {
       expect(screen.getByText('No documents yet')).toBeInTheDocument();

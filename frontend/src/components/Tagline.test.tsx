@@ -1,28 +1,28 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import HelloWorld from './HelloWorld';
+import Tagline from './Tagline';
 
-describe('HelloWorld', () => {
+describe('Tagline', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
   });
 
   it('shows loading state initially', () => {
     vi.spyOn(global, 'fetch').mockImplementation(
-      () => new Promise(() => {}), // never resolves
+      () => new Promise(() => {}),
     );
 
-    render(<HelloWorld />);
+    render(<Tagline />);
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
-  it('displays the hello message on success', async () => {
+  it('displays the tagline on success', async () => {
     vi.spyOn(global, 'fetch').mockResolvedValueOnce({
       ok: true,
       json: async () => ({ message: 'Mapping Business Resilience.' }),
     } as Response);
 
-    render(<HelloWorld />);
+    render(<Tagline />);
 
     await waitFor(() => {
       expect(screen.getByText('Mapping Business Resilience.')).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('HelloWorld', () => {
   it('displays an error on fetch failure', async () => {
     vi.spyOn(global, 'fetch').mockRejectedValueOnce(new Error('Network error'));
 
-    render(<HelloWorld />);
+    render(<Tagline />);
 
     await waitFor(() => {
       expect(screen.getByText('Error: Network error')).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe('HelloWorld', () => {
       statusText: 'Internal Server Error',
     } as Response);
 
-    render(<HelloWorld />);
+    render(<Tagline />);
 
     await waitFor(() => {
       expect(screen.getByText('Error: HTTP 500: Internal Server Error')).toBeInTheDocument();

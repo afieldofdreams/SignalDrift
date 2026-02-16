@@ -26,6 +26,26 @@ export async function apiFetch<T>(path: string): Promise<ApiResult<T>> {
   }
 }
 
+export async function apiPost<T>(path: string, body: unknown): Promise<ApiResult<T>> {
+  try {
+    const response = await fetch(`${BASE_URL}${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+      const detail = data?.detail ?? `HTTP ${response.status}: ${response.statusText}`;
+      return { ok: false, error: detail };
+    }
+    const data: T = await response.json();
+    return { ok: true, data };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return { ok: false, error: message };
+  }
+}
+
 export async function apiDelete<T>(path: string): Promise<ApiResult<T>> {
   try {
     const response = await fetch(`${BASE_URL}${path}`, { method: 'DELETE' });

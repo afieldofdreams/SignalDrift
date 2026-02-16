@@ -24,7 +24,7 @@
   margin-bottom: 0.5rem;
 }
 
-.hello-message {
+.tagline {
   font-size: 3rem;
   font-weight: 300;
   margin: 0;
@@ -170,4 +170,258 @@
 .file-delete:hover {
   color: #e74c3c;
   background: rgba(231, 76, 60, 0.1);
+}
+
+.file-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== Analysis Page ===== */
+
+.analysis-page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.analysis-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.back-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.15s;
+}
+
+.back-link:hover {
+  color: #ccc;
+}
+
+.analysis-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0;
+  color: #ddd;
+}
+
+.analysis-label {
+  color: #555;
+  margin-right: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.analysis-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.analysis-prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.prompt-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.prompt-label,
+.output-label,
+.history-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #555;
+}
+
+.prompt-select {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  background: #111;
+  color: #ccc;
+  border: 1px solid #222;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.prompt-editor {
+  flex: 1;
+  min-height: 300px;
+  padding: 0.75rem;
+  background: #111;
+  color: #ddd;
+  border: 1px solid #222;
+  border-radius: 6px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.prompt-editor:focus {
+  outline: none;
+  border-color: #444;
+}
+
+.run-btn {
+  align-self: flex-start;
+  padding: 0.55rem 1.2rem;
+  background: #1a6b4a;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.run-btn:hover {
+  background: #1d7d56;
+}
+
+.run-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.analysis-error {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.analysis-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.output-status {
+  color: #888;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.output-meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.output-content {
+  flex: 1;
+  min-height: 300px;
+  padding: 0.75rem;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 6px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #bbb;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+/* Run history */
+
+.run-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: #111;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.15s;
+}
+
+.history-item:hover {
+  background: #181818;
+}
+
+.history-item.active {
+  border-left: 2px solid #1a6b4a;
+}
+
+.history-status {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.history-status.complete {
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.history-status.error {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.history-status.pending {
+  color: #f39c12;
+  background: rgba(243, 156, 18, 0.1);
+}
+
+.history-prompt {
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.history-meta {
+  color: #555;
+  font-size: 0.75rem;
+  flex-shrink: 0;
 }

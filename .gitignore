@@ -48,6 +48,9 @@ dist-ssr/
 # ===== Uploads =====
 backend/uploads/
 
+# ===== Database =====
+*.db
+
 # ===== Test / Coverage =====
 .coverage
 htmlcov/

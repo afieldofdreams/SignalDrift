@@ -9,6 +9,8 @@ dependencies = [
     "pydantic-settings>=2.7.0",
     "httpx>=0.28.0",
     "python-multipart>=0.0.20",
+    "anthropic>=0.79.0",
+    "aiosqlite>=0.22.0",
 ]
 
 [project.optional-dependencies]
@@ -20,7 +22,10 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 strict = true
-filterwarnings = ["error"]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:anyio",
+]
 
 [tool.ruff]
 target-version = "py313"

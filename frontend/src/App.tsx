@@ -1,18 +1,16 @@
-import HelloWorld from './components/HelloWorld';
-import DocumentUpload from './components/DocumentUpload';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AnalysisPage from './pages/AnalysisPage';
 import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <header className="app-header">
-        <p className="app-title">SignalDrift</p>
-        <HelloWorld />
-      </header>
-      <main className="app-main">
-        <DocumentUpload />
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/analyse/:filename" element={<AnalysisPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

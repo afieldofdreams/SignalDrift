@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from app.database import init_db
 from app.routes import router
 
 
@@ -16,6 +17,7 @@ async def lifespan(app: FastAPI):
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
     settings.upload_path.mkdir(parents=True, exist_ok=True)
+    await init_db()
     logging.getLogger(__name__).info("SignalDrift backend starting up")
     yield
     logging.getLogger(__name__).info("SignalDrift backend shutting down")

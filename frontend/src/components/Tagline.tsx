@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../api/client';
 
-interface HelloResponse {
+interface TaglineResponse {
   message: string;
 }
 
-export default function HelloWorld() {
+export default function Tagline() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -13,8 +13,8 @@ export default function HelloWorld() {
   useEffect(() => {
     let cancelled = false;
 
-    async function fetchHello() {
-      const result = await apiFetch<HelloResponse>('/api/v1/hello');
+    async function fetchTagline() {
+      const result = await apiFetch<TaglineResponse>('/api/v1/hello');
       if (cancelled) return;
 
       if (result.ok) {
@@ -25,12 +25,12 @@ export default function HelloWorld() {
       setLoading(false);
     }
 
-    fetchHello();
+    fetchTagline();
     return () => { cancelled = true; };
   }, []);
 
   if (loading) return <p className="status">Loading...</p>;
   if (error) return <p className="status error">Error: {error}</p>;
 
-  return <h1 className="hello-message">{message}</h1>;
+  return <h1 className="tagline">{message}</h1>;
 }

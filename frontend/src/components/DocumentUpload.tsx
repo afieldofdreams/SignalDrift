@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { apiDelete, apiFetch, apiUpload } from '../api/client';
 
 interface FileInfo {
@@ -114,19 +115,21 @@ export default function DocumentUpload() {
         <ul className="file-list">
           {files.map((f) => (
             <li key={f.filename} className="file-item">
-              <div className="file-icon">{FILE_ICON}</div>
-              <div className="file-info">
-                <span className="file-name" title={displayName(f.filename)}>
-                  {displayName(f.filename)}
-                </span>
-                <span className="file-meta">
-                  <span className="file-ext">{fileExtension(f.filename)}</span>
-                  <span className="file-sep">&middot;</span>
-                  <span>{formatSize(f.size)}</span>
-                  <span className="file-sep">&middot;</span>
-                  <span>{formatDate(f.uploaded_at)}</span>
-                </span>
-              </div>
+              <Link to={`/analyse/${encodeURIComponent(f.filename)}`} className="file-link">
+                <div className="file-icon">{FILE_ICON}</div>
+                <div className="file-info">
+                  <span className="file-name" title={displayName(f.filename)}>
+                    {displayName(f.filename)}
+                  </span>
+                  <span className="file-meta">
+                    <span className="file-ext">{fileExtension(f.filename)}</span>
+                    <span className="file-sep">&middot;</span>
+                    <span>{formatSize(f.size)}</span>
+                    <span className="file-sep">&middot;</span>
+                    <span>{formatDate(f.uploaded_at)}</span>
+                  </span>
+                </div>
+              </Link>
               <button
                 className="file-delete"
                 onClick={() => handleDelete(f.filename)}

@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:5173,http://localhost:3000"
     log_level: str = "info"
     upload_dir: str = "uploads"
+    anthropic_api_key: str = ""
+    anthropic_model: str = "claude-sonnet-4-20250514"
+    db_path: str = "signaldrift.db"
 
     @property
     def upload_path(self) -> Path:
