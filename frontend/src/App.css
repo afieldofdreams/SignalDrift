@@ -1,0 +1,38 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.app-header {
+  text-align: center;
+}
+
+.app-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.hello-message {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+  color: #f0f0f0;
+}
+
+.status {
+  font-size: 1rem;
+  color: #888;
+}
+
+.status.error {
+  color: #e74c3c;
+}
